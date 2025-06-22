@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>Admin panel</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link href="/pic/mainlogo.png" rel="icon">
+
+    </head>
+    <body>
+            <!-- Spinner Start -->
+            <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <!-- Spinner End -->
+
+            <!-- nav bar -->
+            <div class="container-fluid p-0">
+                <!-- Vertical Navbar -->
+                <nav class="navbar navbar-light p-0 vertical-navbar">
+                    <a href="" class="navbar-brand p-0">
+                        <img src="/pic/mainlogo.png" alt="Logo">
+                    </a>
+                    <span class="admin-text">Admin Panel</span>
+                    <div class="navbar-nav flex-column ms-auto">
+
+                        <a href="/event" class="nav-item nav-link">View All Event</a>
+                        <a href="" class="nav-item nav-link">Add New Event</a>
+
+                    </div>
+                    <a href="/login" class="btn btn-primary rounded-pill py-2 px-4 login-btn">Logout</a>
+                </nav>
+            </div>
+
+            <div class="blog-form-container" style="margin-left: 270px; padding: 20px;">
+                <h2>Add New Blog Post</h2>
+                <div th:if="${param.success}" class="alert alert-success">
+                    Blog post added successfully!
+                </div>
+                <form id="blogForm" action="/event" method="POST">
+                    <div class="form-group">
+                        <label for="blogTitle">Blog Title:</label>
+                        <input type="text" class="form-control" id="blogTitle" name="blogTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogDescription">Blog Description:</label>
+                        <textarea class="form-control" id="blogDescription" name="blogDescription" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogLink">Blog Link:</label>
+                        <input type="url" class="form-control" id="blogLink" name="blogLink" required>
+                    </div>
+                    <button type="submit" class="but">Submit Blog</button>
+                </form>
+            </div>
+
+
+
+            <!-- CSS for the vertical navbar -->
+
+            <style>
+                /* Ensure the navbar takes up the full height of the screen */
+                .vertical-navbar {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 100vh; /* Full height */
+                    width: 250px; /* Width of the sidebar */
+                    background-color: #ffffff; /* Dark background */
+                    padding-top: 20px;
+                    border-right: solid;
+
+                }
+
+                .admin-text {
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    margin-left: 55px; /* Optional: Space between logo and text */
+                    font-size: 22px; /* Optional: Adjust the font size */
+                    color: #000; /* Optional: Set the color of the text */
+
+                }
+                /*  navbar items are stacked vertically */
+                .navbar-nav {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    height: 80%; /* Adjust height to fit content */
+                    border-top: solid black;
+                    margin-top: 20px;
+                }
+
+                .nav-item {
+                    width: 100%; /* Make each item take up the full width */
+                    text-align: center; /* Center the text inside the item */
+                    padding: 20px 0;
+                    color: #0f100c !important; /* White text color */
+                    font-family: 'Nunito', sans-serif; /* Change font to Nunito */
+                    font-size: 18px;
+                    font-weight: 600;
+                    position: relative;
+                    margin-right: 25px;
+                    outline: none;
+                    transition: 0.5s;
+                    border-bottom: 1px solid #1f1414; /* Subtle separation between items */
+                }
+
+                .nav-item.active {
+                    color: #fa3047 !important; /* Blue color for active link */
+                    /* background-color: #e7eef4; */
+                     /* Darker background when active */
+                }
+
+                .nav-item:hover {
+                    color: #ee2929 !important; /* Blue color on hover */
+                }
+
+                .btn {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80%;
+                    background-color: #13171a; /* Blue button color */
+                    color: white;
+                    border-radius: 50px;
+                    padding: 15px 0;
+                    text-align: center;
+                    margin-bottom: 100px;
+
+                }
+                .btn:hover{
+                    background-color: #ee2929;
+                }
+
+                .navbar-brand img {
+                    width: 100%; /* Adjust logo to fit the sidebar */
+                    max-width: 180px; /* Optional: specify a max-width for the logo */
+                    margin-bottom: 30px; /* Space between logo and nav items */
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    transition: 0.5s;
+                    filter: invert(100%) brightness(0%); /* Invert the logo for dark theme */
+                }
+
+
+                /* Sticky behavior for logo and navbar items */
+                @media (min-width: 992px) {
+                    .navbar-light {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        z-index: 999;
+                    }
+
+                    .navbar-light .navbar-nav .nav-link::before {
+                        position: absolute;
+                        content: "";
+                        width: 0;
+                        height: 2px;
+                        bottom: -1px;
+                        left: 50%;
+                        background: #ff0000;
+                        transition: 0.5s;
+                    }
+
+                    .navbar-light .navbar-nav .nav-link:hover::before,
+                    .navbar-light .navbar-nav .nav-link.active::before {
+                        width: calc(100% - 2px);
+                        left: 1px;
+                    }
+                }
+
+                /* Logo behavior on smaller screens */
+                @media (max-width: 991.98px) {
+                    .navbar-light .navbar-brand img {
+                        max-height: 45px;
+                    }
+
+                    .navbar-nav .nav-link {
+                        padding: 10px 0;
+                        margin-left: 0;
+                        color: #1d1d1d !important;
+                    }
+                }
+            </style>
+
+            <style>
+                /* Add these styles to your existing CSS */
+                .blog-form-container {
+                    background-color: #fff;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                }
+
+                .form-group {
+                    margin-bottom: 20px;
+                }
+
+                .form-group label {
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                }
+
+                .form-control {
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                }
+
+                textarea.form-control {
+                    resize: vertical;
+                }
+                .but{
+
+                    position: absolute;
+                    bottom: 52px;
+                    left: 59%;
+                    transform: translateX(-50%);
+                    width: 30%;
+                    background-color: #13171a; /* Blue button color */
+                    color: white;
+                    border-radius: 50px;
+                    padding: 15px 0;
+                    text-align: center;
+                    margin-top: 50%;
+                    margin-bottom: 50px;
+                }
+
+                .but:hover{
+                    background-color: #ee2929;
+                }
+
+                .alert {
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    border: 1px solid transparent;
+                    border-radius: 4px;
+                }
+                
+                .alert-success {
+                    color: #155724;
+                    background-color: #d4edda;
+                    border-color: #c3e6cb;
+                }
+            </style>
+    </body>
+</html>

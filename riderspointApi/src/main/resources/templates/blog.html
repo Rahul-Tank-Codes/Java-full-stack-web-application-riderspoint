@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Event Posts</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="/pic/mainlogo.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!-- Spinner End -->
+
+<!-- Navbar & Hero Start -->
+<div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="" class="navbar-brand p-0">
+            <img src="/pic/mainlogo.png" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="/index" class="nav-item nav-link">Home</a>
+
+                <a href="/blog" class="nav-item nav-link ">Blog</a>
+                <a href="/group" class="nav-item nav-link">Group</a>
+                <a href="/event" class="nav-item nav-link active">Event</a>
+                <a href="/about" class="nav-item nav-link">About</a>
+            </div>
+
+        </div>
+    </nav>
+</div>
+<!-- Navbar & Hero End -->
+
+<!-- Header Start -->
+<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-3 text-white animated slideInDown">RIDER'S EVENTS</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="/index">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Event</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+
+<!-- Blog List Container -->
+<div class="blog-list-container" style="margin-top: 100px; padding: 20px;">
+    <h2>Event Posts</h2>
+    <div class="blog-list">
+        <!-- Thymeleaf loop to display blogs -->
+        <div th:each="blog : ${blogs}" class="blog-card">
+            <h3 th:text="${blog.title}" class="blog-title"></h3>
+            <p th:text="${blog.description}" class="blog-description"></p>
+            <a th:href="${blog.link}" class="blog-link" target="_blank">Read More</a>
+        </div>
+    </div>
+</div>
+
+<style>
+
+
+
+
+    /* Blog List Styling */
+    .blog-list-container {
+        max-width: 1200px;
+        margin: 100px auto 0;
+        padding: 20px;
+    }
+
+    .blog-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .blog-title {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .blog-description {
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .blog-link {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #13171a;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: background-color 0.3s ease;
+    }
+
+    .blog-link:hover {
+        background-color: #ee2929;
+    }
+
+    /* Button Styling */
+    .btn {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+        transition: .5s;
+    }
+
+    .btn-primary {
+        color: #FFFFFF;
+        background-color: #13171a;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #ee2929;
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 991.98px) {
+        .navbar-light .navbar-brand img {
+            max-height: 45px;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            padding: 10px 0;
+            margin-left: 0;
+        }
+    }
+</style>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/easing.min.js"></script>
+<script src="/js/waypoints.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/moment-timezone.min.js"></script>
+<script src="/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+
+<!-- Spinner JavaScript -->
+<script>
+    $(window).on('load', function () {
+        $('#spinner').fadeOut('slow');
+    });
+</script>
+</body>
+</html>
